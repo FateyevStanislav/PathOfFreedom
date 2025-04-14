@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerView : MonoBehaviour
 {
     private PlayerModel model;
     private Rigidbody2D rb;
+    internal Image HealthBar;
     private Transform groundCheck;
+    private Vector3 healthBarOffset = new Vector3(0, 2f);
 
     private void Awake()
     {
@@ -16,6 +19,28 @@ public class PlayerView : MonoBehaviour
         groundCheck = transform.Find("GroundCheck");
         rb.sharedMaterial = model.PlayerMaterial;
         model.GroundMask = LayerMask.GetMask("Platform");
+        HealthBar = GameObject.Find("HealthBar").GetComponent<Image>();
+        HealthBar.type = Image.Type.Filled;
+        HealthBar.fillMethod = Image.FillMethod.Horizontal;
+        HealthBar.fillAmount = 1f;
+        GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
+    }
+
+    private void Update()
+    {
+        UpdateHealthBarPosition();
+        UpdateHealtBarValue();
+    }
+
+    private void UpdateHealthBarPosition()
+    {
+        var screenPos = transform.position;
+        HealthBar.transform.position = screenPos + healthBarOffset;
+    }
+
+    internal void UpdateHealtBarValue()
+    {
+        HealthBar.fillAmount = model.Health / model.maxHealth;
     }
 
     internal void Initialise(PlayerModel modelRef)
@@ -29,7 +54,7 @@ public class PlayerView : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(moveInput * model.Speed, rb.linearVelocityY);
         }
-        else if (model.IsGrounded)
+        else if (model.IsOnGround)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
         }
@@ -50,6 +75,6 @@ public class PlayerView : MonoBehaviour
 
     internal void CheckGround()
     {
-        model.IsGrounded = Physics2D.OverlapCircle(groundCheck.position, model.GroundCheckRadius, model.GroundMask);
+        model.IsOnGround = Physics2D.OverlapCircle(groundCheck.position, model.GroundCheckRadius, model.GroundMask);
     }
 }

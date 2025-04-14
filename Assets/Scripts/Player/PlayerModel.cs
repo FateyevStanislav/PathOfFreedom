@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerModel
@@ -10,11 +11,13 @@ public class PlayerModel
     internal readonly float GroundCheckRadius = 0.3f;
 
     [Header("Runtime State")]
-    internal bool IsGrounded;
+    internal bool IsOnGround;
     internal bool IsJumping;
     internal bool IsFacingRight = true;
     internal float JumpTimeCounter;
     internal float MoveInput;
+    internal readonly float maxHealth = 100f;
+    internal float Health;
 
     internal PhysicsMaterial2D PlayerMaterial;
     internal LayerMask GroundMask;
@@ -26,6 +29,7 @@ public class PlayerModel
             name = "PlayerMaterial",
             friction = 0f
         };
+        Health = maxHealth; 
     }
 
     internal void UpdateJumpTimer()
@@ -38,5 +42,19 @@ public class PlayerModel
         {
             IsJumping = false;
         }
+    }
+
+    internal void TakeDamage(float dmg)
+    {
+        Health -= dmg;
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

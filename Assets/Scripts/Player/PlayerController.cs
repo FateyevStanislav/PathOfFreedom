@@ -21,6 +21,15 @@ public class PlayerController : MonoBehaviour
         HandleFLip();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Thorn"))
+        {
+            model.TakeDamage(20);
+            view.Jump(model.JumpForce);
+        }
+    }
+
     private void HandleMoveInput()
     {
         model.MoveInput = Input.GetAxis("Horizontal");
@@ -29,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        if (model.IsGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (model.IsOnGround && Input.GetKeyDown(KeyCode.Space))
         {
             model.IsJumping = true;
             model.JumpTimeCounter = model.MaxJumpTime;
@@ -51,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleFLip()
     {
-        if ((model.MoveInput > 0 && !model.IsFacingRight) 
+        if ((model.MoveInput > 0 && !model.IsFacingRight)
             || (model.MoveInput < 0 && model.IsFacingRight))
         {
             view.Flip();
