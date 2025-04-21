@@ -8,7 +8,6 @@ public class PlayerView : MonoBehaviour
     private Rigidbody2D rb;
     internal Image HealthBar;
     private Transform groundCheck;
-    private Vector3 healthBarOffset = new Vector3(0, 2f);
 
     private void Awake()
     {
@@ -28,17 +27,10 @@ public class PlayerView : MonoBehaviour
 
     private void Update()
     {
-        UpdateHealthBarPosition();
         UpdateHealtBarValue();
     }
 
-    private void UpdateHealthBarPosition()
-    {
-        var screenPos = transform.position;
-        HealthBar.transform.position = screenPos + healthBarOffset;
-    }
-
-    internal void UpdateHealtBarValue()
+    private void UpdateHealtBarValue()
     {
         HealthBar.fillAmount = model.Health / model.maxHealth;
     }
