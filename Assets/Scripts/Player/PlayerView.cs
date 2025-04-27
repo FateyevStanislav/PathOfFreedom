@@ -7,7 +7,9 @@ public class PlayerView : MonoBehaviour
     private PlayerModel model;
     private Rigidbody2D rb;
     internal Image HealthBar;
+    internal Transform Sword;
     private Transform groundCheck;
+    private float swortRotateAngle = 70f;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class PlayerView : MonoBehaviour
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
         GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
+        Sword = transform.Find("Sword");
     }
 
     private void Update()
@@ -64,6 +67,16 @@ public class PlayerView : MonoBehaviour
         var scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    internal void Hit()
+    {
+        Sword.Rotate(0, 0, -swortRotateAngle);
+    }
+
+    internal void RaiseSword()
+    {
+        Sword.Rotate(0, 0, swortRotateAngle);
     }
 
     internal void CheckGround()

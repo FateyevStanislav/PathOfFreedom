@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         HandleMoveInput();
         HandleJumpInput();
         HandleFLip();
+        HandleHit();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +65,25 @@ public class PlayerController : MonoBehaviour
             || (model.MoveInput < 0 && model.IsFacingRight))
         {
             view.Flip();
+        }
+    }
+
+    private void HandleHit()
+    {
+        if (model.CooldownCounter > 0)
+        {
+            model.CooldownCounter -= Time.deltaTime;
+        }
+        else if (model.IsHitting)
+        {
+            model.IsHitting = false;
+            view.RaiseSword();
+        }
+        if (Input.GetButtonDown("Fire1") && model.CooldownCounter <= 0 && !model.IsHitting)
+        {
+            model.IsHitting = true;
+            model.CooldownCounter = model.Cooldown;
+            view.Hit();
         }
     }
 }

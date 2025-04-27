@@ -4,19 +4,23 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class PlayerModel
 {
-    [Header("Moshion Parametrs")]
+    [Header("Constant Parametrs")]
     internal readonly float Speed = 7f;
     internal readonly float JumpForce = 11f;
     internal readonly float MaxJumpTime = 0.2f;
     internal readonly float GroundCheckRadius = 0.3f;
+    internal readonly float maxHealth = 100f;
+    internal readonly float Cooldown = 0.6f;
+    public readonly float Damage = 20f;
 
     [Header("Runtime State")]
     internal bool IsOnGround;
     internal bool IsJumping;
+    public bool IsHitting;
     internal bool IsFacingRight = true;
     internal float JumpTimeCounter;
+    internal float CooldownCounter;
     internal float MoveInput;
-    internal readonly float maxHealth = 100f;
     internal float Health;
 
     internal PhysicsMaterial2D PlayerMaterial;
