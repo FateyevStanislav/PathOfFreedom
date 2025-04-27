@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerView : MonoBehaviour
 {
-    private PlayerModel model;
+    internal PlayerModel model;
     private Rigidbody2D rb;
     internal Image HealthBar;
     internal Transform Sword;

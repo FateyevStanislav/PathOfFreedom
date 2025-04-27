@@ -79,7 +79,8 @@ public class PlayerController : MonoBehaviour
             model.IsHitting = false;
             view.RaiseSword();
         }
-        if (Input.GetButtonDown("Fire1") && model.CooldownCounter <= 0 && !model.IsHitting)
+
+        if (Input.GetMouseButtonDown(0) && model.CooldownCounter <= 0 && !model.IsHitting)
         {
             model.IsHitting = true;
             model.CooldownCounter = model.Cooldown;
