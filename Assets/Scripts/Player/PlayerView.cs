@@ -17,6 +17,7 @@ public class PlayerView : MonoBehaviour
         rb.gravityScale = 3;
         groundCheck = transform.Find("GroundCheck");
         rb.sharedMaterial = model.PlayerMaterial;
+        rb.position = GameObject.FindWithTag("Respawn").transform.position;
         model.GroundMask = LayerMask.GetMask("Platform");
         HealthBar = GameObject.Find("HealthBar").GetComponent<Image>();
         HealthBar.type = Image.Type.Filled;
