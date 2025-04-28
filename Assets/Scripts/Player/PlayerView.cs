@@ -21,7 +21,7 @@ public class PlayerView : MonoBehaviour
         rb.sharedMaterial = model.PlayerMaterial;
         rb.position = GameObject.FindWithTag("Respawn").transform.position;
         model.GroundMask = LayerMask.GetMask("Platform");
-        HealthBar = GameObject.Find("HealthBar").GetComponent<Image>();
+        HealthBar = GameObject.Find("PlayerHealthBar").GetComponent<Image>();
         HealthBar.type = Image.Type.Filled;
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CCEView : MonoBehaviour
@@ -7,7 +8,7 @@ public class CCEView : MonoBehaviour
     internal PlayerModel player;
     private Rigidbody2D rb;
     private CCEModel model;
-
+    internal Image HealthBar;
     private void Awake()
     {
         model = new CCEModel();
@@ -15,6 +16,20 @@ public class CCEView : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        HealthBar = GameObject.Find("CCEHealthBar").GetComponent<Image>();
+        HealthBar.type = Image.Type.Filled;
+        HealthBar.fillMethod = Image.FillMethod.Horizontal;
+        HealthBar.fillAmount = 1f;
+    }
+
+    private void Update()
+    {
+        UpdateHealtBarValue();
+    }
+
+    private void UpdateHealtBarValue()
+    {
+        HealthBar.fillAmount = model.Health / model.maxHealth;
     }
 
     internal void Initialise(CCEModel modelRef)
