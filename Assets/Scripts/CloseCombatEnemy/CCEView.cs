@@ -6,20 +6,25 @@ using UnityEngine.UI;
 public class CCEView : MonoBehaviour
 {
     internal PlayerModel player;
-    private Rigidbody2D rb;
-    private CCEModel model;
+    internal Rigidbody2D rb;
+    internal CCEModel model;
     internal Image HealthBar;
+    internal Transform Sword;
+    private float swortRotateAngle = 70f;
+
     private void Awake()
     {
         model = new CCEModel();
         model = GetComponent<CCEControler>().model;
         rb = GetComponent<Rigidbody2D>();
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         HealthBar = GameObject.Find("CCEHealthBar").GetComponent<Image>();
         HealthBar.type = Image.Type.Filled;
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
+        Sword = transform.Find("CCESword");
     }
 
     private void Update()
@@ -49,6 +54,24 @@ public class CCEView : MonoBehaviour
     internal void Jump(float force)
     {
         rb.linearVelocity = new Vector2(rb.linearVelocityX, force);
+    }
+
+    internal void Flip()
+    {
+        var scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+        model.IsFacingOnPlayer = !model.IsFacingOnPlayer;
+    }
+
+    internal void Hit()
+    {
+        Sword.Rotate(0, 0, -swortRotateAngle);
+    }
+
+    internal void RaiseSword()
+    {
+        Sword.Rotate(0, 0, swortRotateAngle);
     }
 
     void Die()

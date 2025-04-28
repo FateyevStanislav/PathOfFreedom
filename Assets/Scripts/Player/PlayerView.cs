@@ -26,7 +26,7 @@ public class PlayerView : MonoBehaviour
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
         GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
-        Sword = transform.Find("Sword");
+        Sword = transform.Find("PlayerSword");
     }
 
     private void Update()

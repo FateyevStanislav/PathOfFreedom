@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     internal PlayerModel model;
     private PlayerView view;
+    private CCEView CCEnemy;
+    private Collider2D bodyCollider;
 
     private void Awake()
     {
@@ -11,6 +13,8 @@ public class PlayerController : MonoBehaviour
         model.Initialise();
         view = GetComponent<PlayerView>();
         view.Initialise(model);
+        CCEnemy = GameObject.Find("CloseCombatEnemy").GetComponent<CCEView>();
+        bodyCollider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -31,6 +35,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("CCESword")
+            && other.IsTouching(bodyCollider)
+            && CCEnemy.model.IsHitting)
+        {
+            model.TakeDamage(CCEnemy.model.Damage);
+        }
+    }
     private void HandleMoveInput()
     {
         model.MoveInput = Input.GetAxis("Horizontal");
