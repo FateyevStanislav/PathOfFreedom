@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        HandleExit();
         view.CheckGround();
         HandleMoveInput();
         HandleJumpInput();
@@ -98,6 +100,14 @@ public class PlayerController : MonoBehaviour
             model.IsHitting = true;
             model.CooldownCounter = model.Cooldown;
             view.Hit();
+        }
+    }
+
+    private void HandleExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }
