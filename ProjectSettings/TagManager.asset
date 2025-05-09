@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - PlayerSword
   - CCESword
+  - Exit
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleExit();
+        HandleEscape();
         view.CheckGround();
         HandleMoveInput();
         HandleJumpInput();
@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
             && CCEnemy.model.IsHitting)
         {
             model.TakeDamage(CCEnemy.model.Damage);
+        }
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            Debug.Log("Óðà");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     private void HandleMoveInput()
@@ -103,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleExit()
+    private void HandleEscape()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
