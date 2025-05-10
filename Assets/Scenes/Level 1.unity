@@ -350,6 +350,7 @@ RectTransform:
   m_Children:
   - {fileID: 565275079}
   - {fileID: 960840623}
+  - {fileID: 901188244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1279,6 +1280,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565275078}
   m_CullTransparentMesh: 1
+--- !u!1 &901188243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901188244}
+  - component: {fileID: 901188246}
+  - component: {fileID: 901188245}
+  m_Layer: 5
+  m_Name: MusketeerHealthBar
+  m_TagString: HealthBar
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &901188244
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901188243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.942767, y: 0.38335997, z: 1.198}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 60840099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -218.9, y: 35.7}
+  m_SizeDelta: {x: 21.03, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &901188245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901188243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.14716971, g: 0.09635451, b: 0.09635451, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -8466629868714491950, guid: 6d18758ee0de8b941a0799f8bdbc60bf, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &901188246
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901188243}
+  m_CullTransparentMesh: 1
 --- !u!1 &936991788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,9 +1910,9 @@ GameObject:
   - component: {fileID: 1216376771}
   - component: {fileID: 1216376770}
   - component: {fileID: 1216376769}
-  - component: {fileID: 1216376768}
-  - component: {fileID: 1216376767}
   - component: {fileID: 1216376766}
+  - component: {fileID: 1216376773}
+  - component: {fileID: 1216376772}
   m_Layer: 0
   m_Name: Musketeer
   m_TagString: Untagged
@@ -1871,30 +1947,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1216376767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216376765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6744c2cc56a49b047ada621d0de746eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1216376768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216376765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0513a4c58c23b478b3be5b8ece524c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1216376769
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2004,14 +2056,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216376765}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.64, y: -0.49, z: 0}
   m_LocalScale: {x: -0.785129, y: 0.66025215, z: 0.5912}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1680406790}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1216376772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216376765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1202ef72969e342aac998aea77c678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1216376773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216376765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e72a7e30907c8246b64694c733c9e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1290077025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,7 +2354,7 @@ GameObject:
   - component: {fileID: 1680406791}
   m_Layer: 0
   m_Name: Musket
-  m_TagString: Untagged
+  m_TagString: Musket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2292,8 +2368,8 @@ Transform:
   m_GameObject: {fileID: 1680406789}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.3, y: -0.89, z: 0}
-  m_LocalScale: {x: -0.31424844, y: 0.3736838, z: 0.41733012}
+  m_LocalPosition: {x: 1.37, y: -1.01, z: 0}
+  m_LocalScale: {x: -0.40871155, y: 0.48601317, z: 0.54277956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1216376771}

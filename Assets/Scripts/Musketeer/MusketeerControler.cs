@@ -43,7 +43,7 @@ public class MusketeerControler : MonoBehaviour
         else if (model.IsHitting)
         {
             model.IsHitting = false;
-            view.RaiseSword();
+            view.NormalizedSword();
             model.CooldownCounter = model.Cooldown;
             return;
         }
@@ -66,13 +66,10 @@ public class MusketeerControler : MonoBehaviour
     private void HadleFlipToPlayer()
     {
         var playerIsToRight = (player.transform.position.x - transform.position.x) > 0;
-
-        // Если игрок справа, а враг смотрит влево - поворачиваем
         if (playerIsToRight && !model.IsFacingOnPlayer)
         {
             view.Flip();
         }
-        // Если игрок слева, а враг смотрит вправо - поворачиваем
         else if (!playerIsToRight && model.IsFacingOnPlayer)
         {
             view.Flip();

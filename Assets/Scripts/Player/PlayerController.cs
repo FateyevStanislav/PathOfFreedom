@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Exit"))
         {
-            Debug.Log("Óðà");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

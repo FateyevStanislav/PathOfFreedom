@@ -6,7 +6,7 @@ public class CCEModel
     internal float AttackDuration = 0.5f;
     internal float Cooldown = 2f;
     internal float CooldownCounter;
-    internal float AttackRange = 5f;
+    internal float AttackRange = 8f;
     public bool IsHitting;
     internal bool IsFacingOnPlayer;
 

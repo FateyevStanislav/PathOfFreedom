@@ -66,13 +66,10 @@ public class CCEControler : MonoBehaviour
     private void HadleFlipToPlayer()
     {
         var playerIsToRight = (player.transform.position.x - transform.position.x) > 0;
-
-        // Если игрок справа, а враг смотрит влево - поворачиваем
         if (playerIsToRight && !model.IsFacingOnPlayer)
         {
             view.Flip();
         }
-        // Если игрок слева, а враг смотрит вправо - поворачиваем
         else if (!playerIsToRight && model.IsFacingOnPlayer)
         {
             view.Flip();

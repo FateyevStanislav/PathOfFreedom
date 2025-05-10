@@ -9,8 +9,8 @@ public class MusketeerView : MonoBehaviour
     internal Rigidbody2D rb;
     internal MusketeerModel model;
     internal Image HealthBar;
-    internal Transform Sword;
-    private float swortRotateAngle = 70f;
+    internal Transform Musket;
+    private float musketRotateAngle = 70f;
 
     private void Awake()
     {
@@ -20,11 +20,11 @@ public class MusketeerView : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        HealthBar = GameObject.Find("CCEHealthBar").GetComponent<Image>();
+        HealthBar = GameObject.Find("MusketeerHealthBar").GetComponent<Image>();
         HealthBar.type = Image.Type.Filled;
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
-        Sword = transform.Find("CCESword");
+        Musket = transform.Find("Musket");
     }
 
     private void Update()
@@ -66,12 +66,12 @@ public class MusketeerView : MonoBehaviour
 
     internal void Hit()
     {
-        Sword.Rotate(0, 0, -swortRotateAngle);
+        Musket.Rotate(0, 0, -musketRotateAngle);
     }
 
-    internal void RaiseSword()
+    internal void NormalizedSword()
     {
-        Sword.Rotate(0, 0, swortRotateAngle);
+        Musket.Rotate(0, 0, musketRotateAngle);
     }
 
     void Die()
@@ -80,7 +80,7 @@ public class MusketeerView : MonoBehaviour
         {
             collider.enabled = false;
         }
-        GetComponent<CCEControler>().enabled = false;
+        GetComponent<MusketeerControler>().enabled = false;
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(new Vector2(0, 8f), ForceMode2D.Impulse);
         StartCoroutine(DieAfterFall());
