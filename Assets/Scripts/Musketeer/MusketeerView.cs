@@ -32,6 +32,10 @@ public class MusketeerView : MonoBehaviour
     private void Update()
     {
         UpdateHealtBarValue();
+        if (Camera.main.WorldToViewportPoint(transform.position).y < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void UpdateHealtBarValue()
@@ -83,30 +87,12 @@ public class MusketeerView : MonoBehaviour
         Musket.Rotate(0, 0, musketRotateAngle);
     }
 
-    void Die()
+    private void Die()
     {
-        foreach (var collider in GetComponents<Collider2D>())
-        {
-            collider.enabled = false;
-        }
-        GetComponent<MusketeerControler>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        var controller = GetComponent<CCEControler>();
+        if (controller != null) controller.enabled = false;
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(new Vector2(0, 8f), ForceMode2D.Impulse);
-        StartCoroutine(DieAfterFall());
-    }
-
-    private IEnumerator DieAfterFall()
-    {
-        yield return new WaitUntil(() => rb.linearVelocityY < 0);
-        if (!IsOnScreen())
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private bool IsOnScreen()
-    {
-        Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
-        return screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0;
     }
 }

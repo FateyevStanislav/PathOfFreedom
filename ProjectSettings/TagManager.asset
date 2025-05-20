@@ -12,6 +12,7 @@ TagManager:
   - Exit
   - Musket
   - Bullet
+  - CCE
   layers:
   - Default
   - TransparentFX
