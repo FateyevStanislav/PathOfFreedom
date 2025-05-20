@@ -10,11 +10,12 @@ public class MusketeerView : MonoBehaviour
     internal MusketeerModel model;
     internal Image HealthBar;
     internal Transform Musket;
+    [SerializeField] private Bullet Bullet;
+    internal Transform bulletStart;
     private float musketRotateAngle = 70f;
 
     private void Awake()
     {
-        model = new MusketeerModel();
         model = GetComponent<MusketeerControler>().model;
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -25,6 +26,7 @@ public class MusketeerView : MonoBehaviour
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
         Musket = transform.Find("Musket");
+        bulletStart = GameObject.Find("BulletStart").transform;
     }
 
     private void Update()
@@ -67,6 +69,13 @@ public class MusketeerView : MonoBehaviour
     internal void Hit()
     {
         Musket.Rotate(0, 0, -musketRotateAngle);
+        ShootBullet();
+    }
+
+    private void ShootBullet()
+    {
+        Bullet newBullet = Instantiate(Bullet, bulletStart.position, Quaternion.identity);
+        newBullet.Initialize(model.IsFacingOnPlayer);
     }
 
     internal void NormalizedSword()

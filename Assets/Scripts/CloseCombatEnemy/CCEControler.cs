@@ -57,10 +57,8 @@ public class CCEControler : MonoBehaviour
 
     private bool CanAttackPlayer()
     {
-        float distanceToPlayer = Vector2.Distance(
-            transform.position, 
-            player.transform.position);
-        return distanceToPlayer <= model.AttackRange;
+        return Mathf.Abs(player.transform.position.y - transform.position.y) < 0.5f &&
+            Vector2.Distance(transform.position, player.transform.position) < model.AttackRange;
     }
 
     private void HadleFlipToPlayer()

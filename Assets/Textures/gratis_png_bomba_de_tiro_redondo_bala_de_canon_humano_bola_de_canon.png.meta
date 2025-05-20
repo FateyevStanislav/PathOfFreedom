@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e8b9dea846144ac47ada3dfde99b6ae1
+guid: 8c454512ecda5e144a596af9170fd709
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2346302928887187388
-    second: bullet_0
+      213: -8816481942748302631
+    second: gratis_png_bomba_de_tiro_redondo_bala_de_canon_humano_bola_de_canon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bullet_0
+      name: gratis_png_bomba_de_tiro_redondo_bala_de_canon_humano_bola_de_canon_0
       rect:
         serializedVersion: 2
-        x: 239
-        y: 146
-        width: 513
-        height: 431
+        x: 142
+        y: 0
+        width: 608
+        height: 562
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 448783cdae1407fd0800000000000000
-      internalID: -2346302928887187388
+      spriteID: 9d277d1826095a580800000000000000
+      internalID: -8816481942748302631
       vertices: []
       indices: 
       edges: []

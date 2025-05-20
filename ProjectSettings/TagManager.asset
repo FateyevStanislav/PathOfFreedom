@@ -11,6 +11,7 @@ TagManager:
   - CCESword
   - Exit
   - Musket
+  - Bullet
   layers:
   - Default
   - TransparentFX

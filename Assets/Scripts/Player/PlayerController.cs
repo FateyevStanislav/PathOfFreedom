@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     internal PlayerModel model;
     private PlayerView view;
     private CCEView CCEnemy;
+    private MusketeerView Musketeer;
     private Collider2D bodyCollider;
 
     private void Awake()
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
         view = GetComponent<PlayerView>();
         view.Initialise(model);
         CCEnemy = GameObject.Find("CloseCombatEnemy").GetComponent<CCEView>();
+        Musketeer = GameObject.Find("Musketeer").GetComponent<MusketeerView>();
         bodyCollider = GetComponent<Collider2D>();
     }
 
@@ -37,19 +39,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
-        if (other.CompareTag("CCESword")
-            && other.IsTouching(bodyCollider)
+        if (trigger.CompareTag("CCESword")
+            && trigger.IsTouching(bodyCollider)
             && CCEnemy.model.IsHitting)
         {
             model.TakeDamage(CCEnemy.model.Damage);
         }
-        if (other.gameObject.CompareTag("Exit"))
+        if (trigger.gameObject.CompareTag("Exit"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
+
     private void HandleMoveInput()
     {
         model.MoveInput = Input.GetAxis("Horizontal");
@@ -98,7 +101,6 @@ public class PlayerController : MonoBehaviour
             model.IsHitting = false;
             view.RaiseSword();
         }
-
         if (Input.GetMouseButtonDown(0) && model.CooldownCounter <= 0 && !model.IsHitting)
         {
             model.IsHitting = true;

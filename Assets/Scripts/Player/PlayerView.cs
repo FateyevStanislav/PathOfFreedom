@@ -27,6 +27,7 @@ public class PlayerView : MonoBehaviour
         HealthBar.fillAmount = 1f;
         GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
         Sword = transform.Find("PlayerSword");
+        Sword.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     private void Update()

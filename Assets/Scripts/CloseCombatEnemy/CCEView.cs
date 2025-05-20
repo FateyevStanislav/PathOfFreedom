@@ -25,6 +25,7 @@ public class CCEView : MonoBehaviour
         HealthBar.fillMethod = Image.FillMethod.Horizontal;
         HealthBar.fillAmount = 1f;
         Sword = transform.Find("CCESword");
+        Sword.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     private void Update()
