@@ -10,6 +10,7 @@ public class LeverSystem : MonoBehaviour
     private void Start()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         thornObject = GameObject.Find("Thorn");
     }
 
@@ -46,6 +47,7 @@ public class LeverSystem : MonoBehaviour
         if (other.CompareTag("Player") && isEnemyDefeated)
         {
             canActivate = true;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
 
@@ -54,6 +56,7 @@ public class LeverSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canActivate = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         }
     }
 }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
         model.Initialise();
         view = GetComponent<PlayerView>();
         view.Initialise(model);
-        CCEnemy = GameObject.Find("CloseCombatEnemy").GetComponent<CCEView>();
+        CCEnemy = GameObject.Find("CloseCombatEnemy")?.GetComponent<CCEView>();
         Musketeer = GameObject.Find("Musketeer")?.GetComponent<MusketeerView>();
         bodyCollider = GetComponent<Collider2D>();
     }

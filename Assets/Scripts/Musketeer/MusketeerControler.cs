@@ -19,8 +19,11 @@ public class MusketeerControler : MonoBehaviour
 
     private void Update()
     {
-        HandleHit();
-        HadleFlipToPlayer();
+       if (model.isAlive)
+       {
+            HandleHit();
+            HadleFlipToPlayer();
+       }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

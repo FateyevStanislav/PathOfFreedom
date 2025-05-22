@@ -80,6 +80,7 @@ public class CCEView : MonoBehaviour
 
     private void Die()
     {
+        model.isAlive = false;
         GetComponent<Collider2D>().enabled = false;
         var controller = GetComponent<CCEControler>();
         if (controller != null) controller.enabled = false;

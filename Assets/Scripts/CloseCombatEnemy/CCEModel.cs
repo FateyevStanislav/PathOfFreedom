@@ -9,6 +9,7 @@ public class CCEModel
     internal float AttackRange = 8f;
     public bool IsHitting;
     internal bool IsFacingOnPlayer;
+    internal bool isAlive = true;
 
     internal void Initialise()
     {

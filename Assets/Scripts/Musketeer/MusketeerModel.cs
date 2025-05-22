@@ -11,6 +11,7 @@ public class MusketeerModel
     public bool IsHitting;
     internal bool IsFacingOnPlayer;
     internal GameObject Bullet;
+    internal bool isAlive = true;
 
     internal void Initialise()
     {
