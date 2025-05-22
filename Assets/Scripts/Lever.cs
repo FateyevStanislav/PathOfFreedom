@@ -40,6 +40,7 @@ public class LeverSystem : MonoBehaviour
         transform.rotation = Quaternion.Inverse(Quaternion.identity);
         Destroy(thornObject);
         canActivate = false;
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
