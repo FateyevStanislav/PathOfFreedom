@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class LeverSystem : MonoBehaviour
@@ -9,10 +10,11 @@ public class LeverSystem : MonoBehaviour
     private string enemyTag = "CCE";
     private bool isEnemyDefeated;
     private bool canActivate = false;
+    private int sceneIndex;
 
     private void Start()
     {
-        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
         GetComponent<BoxCollider2D>().isTrigger = true;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         door = GameObject.Find("Door");
@@ -52,7 +54,10 @@ public class LeverSystem : MonoBehaviour
     {
         transform.rotation = Quaternion.Inverse(Quaternion.identity);
         canActivate = false;
-        wife.GetComponent<SpriteRenderer>().sprite = wife.GetComponent<Wife>().Happy;
+        if (sceneIndex == 4)
+        {
+            wife.GetComponent<SpriteRenderer>().sprite = wife.GetComponent<Wife>().Happy;
+        }
         Destroy(door);
         Destroy(gameObject.GetComponent<BoxCollider2D>());
     }

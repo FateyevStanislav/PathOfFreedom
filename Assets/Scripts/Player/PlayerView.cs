@@ -14,6 +14,7 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
+        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
         model = GetComponent<PlayerController>().model;
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -22,7 +23,7 @@ public class PlayerView : MonoBehaviour
         rb.sharedMaterial = model.PlayerMaterial;
         rb.position = GameObject.FindWithTag("Respawn").transform.position;
         model.GroundMask = LayerMask.GetMask("Platform");
-        if (SceneManager.GetActiveScene().buildIndex != 4)
+        if (sceneIndex != 4 && sceneIndex != 5)
         {
             Sword = transform.Find("PlayerSword");
             Sword.GetComponent<BoxCollider2D>().isTrigger = true;
