@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour
         HandleMoveInput();
         HandleJumpInput();
         HandleFLip();
-        HandleHit();
+        if (view.Sword != null)
+        {
+            HandleHit();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             model.TakeDamage(CCEnemy.model.Damage);
         }
-        if (trigger.gameObject.CompareTag("Exit"))
+        if (trigger.CompareTag("Exit") && SceneManager.GetActiveScene().buildIndex != 4)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

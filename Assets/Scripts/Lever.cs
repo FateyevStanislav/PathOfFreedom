@@ -1,19 +1,29 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LeverSystem : MonoBehaviour
 {
     private GameObject thornObject;
     private GameObject door;
+    private GameObject wife;
     private string enemyTag = "CCE";
     private bool isEnemyDefeated;
     private bool canActivate = false;
 
     private void Start()
     {
+        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
         GetComponent<BoxCollider2D>().isTrigger = true;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-        thornObject = GameObject.Find("Thorn");
         door = GameObject.Find("Door");
+        if (sceneIndex != 4)
+        {
+            thornObject = GameObject.Find("Thorn");
+        }
+        if (sceneIndex == 4)
+        {
+            wife = GameObject.Find("Wife");
+        }
     }
 
     private void Update()
@@ -42,6 +52,7 @@ public class LeverSystem : MonoBehaviour
     {
         transform.rotation = Quaternion.Inverse(Quaternion.identity);
         canActivate = false;
+        wife.GetComponent<SpriteRenderer>().sprite = wife.GetComponent<Wife>().Happy;
         Destroy(door);
         Destroy(gameObject.GetComponent<BoxCollider2D>());
     }

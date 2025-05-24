@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,18 +22,24 @@ public class PlayerView : MonoBehaviour
         rb.sharedMaterial = model.PlayerMaterial;
         rb.position = GameObject.FindWithTag("Respawn").transform.position;
         model.GroundMask = LayerMask.GetMask("Platform");
-        HealthBar = GameObject.Find("PlayerHealthBar").GetComponent<Image>();
-        HealthBar.type = Image.Type.Filled;
-        HealthBar.fillMethod = Image.FillMethod.Horizontal;
-        HealthBar.fillAmount = 1f;
-        GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
-        Sword = transform.Find("PlayerSword");
-        Sword.GetComponent<BoxCollider2D>().isTrigger = true;
+        if (SceneManager.GetActiveScene().buildIndex != 4)
+        {
+            Sword = transform.Find("PlayerSword");
+            Sword.GetComponent<BoxCollider2D>().isTrigger = true;
+            HealthBar = GameObject.Find("PlayerHealthBar").GetComponent<Image>();
+            HealthBar.type = Image.Type.Filled;
+            HealthBar.fillMethod = Image.FillMethod.Horizontal;
+            HealthBar.fillAmount = 1f;
+            GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
+        }
     }
 
     private void Update()
     {
-        UpdateHealtBarValue();
+        if (HealthBar != null)
+        {
+            UpdateHealtBarValue();
+        }
     }
 
     private void UpdateHealtBarValue()
