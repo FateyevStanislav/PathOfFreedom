@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class LeverSystem : MonoBehaviour
 {
-    public GameObject thornObject;
-    public string enemyTag = "CCE";
+    private GameObject thornObject;
+    private GameObject door;
+    private string enemyTag = "CCE";
     private bool isEnemyDefeated;
     private bool canActivate = false;
 
@@ -12,6 +13,7 @@ public class LeverSystem : MonoBehaviour
         GetComponent<BoxCollider2D>().isTrigger = true;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
         thornObject = GameObject.Find("Thorn");
+        door = GameObject.Find("Door");
     }
 
     private void Update()
@@ -32,14 +34,15 @@ public class LeverSystem : MonoBehaviour
         if (enemy == null)
         {
             isEnemyDefeated = true;
+            Destroy(thornObject);
         }
     }
 
     private void ActivateLever()
     {
         transform.rotation = Quaternion.Inverse(Quaternion.identity);
-        Destroy(thornObject);
         canActivate = false;
+        Destroy(door);
         Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 
