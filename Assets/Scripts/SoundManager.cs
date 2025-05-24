@@ -2,18 +2,24 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance = null;
+    public static SoundManager Instance { get; private set; }
+    public AudioSource musicSource; // Добавьте это поле
 
     private void Awake()
     {
-        if (instance == null)
+        // Если Instance уже существует и это НЕ текущий объект
+        if (Instance != null && Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            // Останавливаем старую музыку перед уничтожением
+            if (Instance.musicSource != null && Instance.musicSource.isPlaying)
+            {
+                Instance.musicSource.Stop();
+            }
+            Destroy(Instance.gameObject); // Уничтожаем старый SoundManager
         }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+
+        // Делаем текущий объект единственным Instance
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

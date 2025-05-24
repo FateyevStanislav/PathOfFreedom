@@ -10,6 +10,7 @@ public class PlayerView : MonoBehaviour
     internal Image HealthBar;
     internal Transform Sword;
     private Transform groundCheck;
+    private AudioSource hitSound;
     private float swortRotateAngle = 70f;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class PlayerView : MonoBehaviour
             HealthBar.fillMethod = Image.FillMethod.Horizontal;
             HealthBar.fillAmount = 1f;
             GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 1;
+            hitSound = GetComponent<AudioSource>();
         }
     }
 
@@ -81,6 +83,7 @@ public class PlayerView : MonoBehaviour
     internal void Hit()
     {
         Sword.Rotate(0, 0, -swortRotateAngle);
+        hitSound.Play();
     }
 
     internal void RaiseSword()
